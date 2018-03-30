@@ -12,8 +12,6 @@ namespace MoNoLiHome
     {
         public static int Main(string[] args)
         {
-            // [NOTE] : Too slow...
-//            var formatter = new CustomDateFormatter("yyyy-MM-dd", new CultureInfo("en-US"));
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)

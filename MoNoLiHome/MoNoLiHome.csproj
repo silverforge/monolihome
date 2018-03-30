@@ -26,4 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MoNoLiHome.Network\MoNoLiHome.Network.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CustomDateFormatter.cs" />
+  </ItemGroup>
 </Project>
