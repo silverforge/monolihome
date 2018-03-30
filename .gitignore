@@ -43,3 +43,4 @@ Thumbs.db
 .idea
 .vs
 appConfig.json
+*.log
