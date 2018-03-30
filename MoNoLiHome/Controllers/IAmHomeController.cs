@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MoNoLiHome.Model;
 using MoNoLiHome.Network.Service;
 
@@ -9,9 +10,11 @@ namespace MoNoLiHome.Controllers
     public class IAmHomeController : Controller
     {
         readonly IArrivedHomeService _arrivedHomeService;
+        readonly ILogger<IAmHomeController> _logger;
 
-        public IAmHomeController(IArrivedHomeService arrivedHomeService)
+        public IAmHomeController(IArrivedHomeService arrivedHomeService, ILogger<IAmHomeController> logger)
         {
+            _logger = logger;
             _arrivedHomeService = arrivedHomeService;
         }
 
@@ -20,6 +23,7 @@ namespace MoNoLiHome.Controllers
         public async Task<JsonResult> Get()
         {
             var result = await _arrivedHomeService.AmIHomeAsync();
+            _logger.LogDebug($" ::: IAmHomeController.Get result ::: {result}");
 
             return Json(new
             {
@@ -28,11 +32,14 @@ namespace MoNoLiHome.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post([FromBody] IAmHomeMessage message)
+        public async Task<JsonResult> Post([FromBody] IAmHomeMessage message)
         {
+            var result = await _arrivedHomeService.IAmHomeAsync(message.Toggle);
+            _logger.LogDebug($" ::: IAmHomeController.Post result ::: {result} :: with set ::: {message.Toggle}");
+
             return Json(new 
             {
-                Set = true
+                Set = result
             });
         }
     }
