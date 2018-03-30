@@ -1,25 +1,25 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoNoLiHome.Model;
-using MoNoLiHome.Network.Client;
+using MoNoLiHome.Network.Service;
 
 namespace MoNoLiHome.Controllers
 {
     [Route("api/[controller]")]
     public class IAmHomeController : Controller
     {
-        readonly IRedisConnector _connector;
+        readonly IArrivedHomeService _arrivedHomeService;
 
-        public IAmHomeController(IRedisConnector connector)
+        public IAmHomeController(IArrivedHomeService arrivedHomeService)
         {
-            _connector = connector;
+            _arrivedHomeService = arrivedHomeService;
         }
 
 
         [HttpGet]
         public async Task<JsonResult> Get()
         {
-            var result = await _connector.GetAsync("I_AM_HOME");
+            var result = await _arrivedHomeService.AmIHomeAsync();
 
             return Json(new
             {

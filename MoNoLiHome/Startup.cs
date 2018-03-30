@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoNoLiHome.Network.Client;
+using MoNoLiHome.Network.Service;
 using StackExchange.Redis;
 
 namespace MoNoLiHome
@@ -25,6 +26,7 @@ namespace MoNoLiHome
             services.AddSingleton<IConnectionMultiplexer>(redisInstance);
 
             services.AddTransient<IRedisConnector, RedisConnector>();
+            services.AddTransient<IArrivedHomeService, ArrivedHomeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

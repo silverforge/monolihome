@@ -4,9 +4,10 @@ using MoNoLiHome.Network.Client;
 
 namespace MoNoLiHome.Network.Service
 {
-    public class ArrivedHomeService
+    public class ArrivedHomeService : IArrivedHomeService
     {
         const string IAMHOMEKEY = "I_AM_HOME";
+        const int TTL = 3;
 
         readonly IRedisConnector _redisConnector;
 
@@ -23,6 +24,12 @@ namespace MoNoLiHome.Network.Service
                 retValue = Boolean.Parse(value);
 
             return retValue;
+        }
+
+        public async Task<bool> IAmHomeAsync(bool toggle)
+        {
+            var result = await _redisConnector.SetAsync(IAMHOMEKEY, toggle.ToString(), TimeSpan.FromHours(TTL));
+            return toggle;
         }
     }
 }
