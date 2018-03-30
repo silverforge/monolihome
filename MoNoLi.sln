@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoNoLiHome", "MoNoLiHome\MoNoLiHome.csproj", "{6012C759-4C3A-42FE-9A7E-821184645506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoNoLiHome.Network", "MoNoLiHome.Network\MoNoLiHome.Network.csproj", "{698A1A7F-6544-4430-8CD3-F7012A5923CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6012C759-4C3A-42FE-9A7E-821184645506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6012C759-4C3A-42FE-9A7E-821184645506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6012C759-4C3A-42FE-9A7E-821184645506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6012C759-4C3A-42FE-9A7E-821184645506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{698A1A7F-6544-4430-8CD3-F7012A5923CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{698A1A7F-6544-4430-8CD3-F7012A5923CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{698A1A7F-6544-4430-8CD3-F7012A5923CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{698A1A7F-6544-4430-8CD3-F7012A5923CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
