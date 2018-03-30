@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
@@ -11,6 +12,8 @@ namespace MoNoLiHome
     {
         public static int Main(string[] args)
         {
+            // [NOTE] : Too slow...
+//            var formatter = new CustomDateFormatter("yyyy-MM-dd", new CultureInfo("en-US"));
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
@@ -20,7 +23,7 @@ namespace MoNoLiHome
                                 fileSizeLimitBytes: 1_000_000,
                                 rollOnFileSizeLimit: true,
                                 shared: true,
-                                flushToDiskInterval: TimeSpan.FromSeconds(1))
+                                flushToDiskInterval: TimeSpan.FromSeconds(10))
                 .CreateLogger();
 
             try
