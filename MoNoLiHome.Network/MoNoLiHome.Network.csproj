@@ -7,9 +7,16 @@
   <ItemGroup>
     <Folder Include="Client\" />
     <Folder Include="Service\" />
+    <Folder Include="Client\Config\" />
+    <Folder Include="Client\Contract\" />
+    <Folder Include="Service\Contract\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.1" />
+    <PackageReference Include="RestSharp" Version="106.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoNoLiHome.Model\MoNoLiHome.Model.csproj" />
   </ItemGroup>
 </Project>

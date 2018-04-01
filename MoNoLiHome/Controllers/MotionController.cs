@@ -1,11 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MoNoLiHome.Network.Service;
 
 namespace MoNoLiHome.Controllers
 {
     [Route("api/[controller]")]
     public class MotionController : Controller
     {
+        readonly ILogger<MotionController> _logger;
+        readonly IArrivedHomeService _arrivedHomeService;
+        readonly IMotionService _motionService;
+
+        public MotionController(IArrivedHomeService arrivedHomeService, IMotionService motionService, ILogger<MotionController> logger)
+        {
+            _logger = logger;
+            _arrivedHomeService = arrivedHomeService;
+            _motionService = motionService;
+        }
+
         [HttpGet]
         public JsonResult Get()
         {
@@ -15,14 +28,19 @@ namespace MoNoLiHome.Controllers
             });
         }
 
-
         [HttpGet]
         [Route("detected")]
-        public JsonResult GetMotionDetected()
+        public async Task<JsonResult> GetMotionDetected()
         {
+            bool result = false;
+            var amIHome = await _arrivedHomeService.AmIHomeAsync();
+            if (!amIHome)
+                result = await _motionService.DetectedAsync();
+
             return Json(new 
             {
-                Response = true
+                Response = result,
+                MessageSent = true
             });
         }
     }

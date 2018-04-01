@@ -52,6 +52,13 @@ namespace MoNoLiHome
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseSerilog()
+                .UseKestrel()
+                .UseUrls("http://::5000")
+                .ConfigureAppConfiguration((hostingContext, config) => 
+                {
+                    config.AddJsonFile("appConfig.json", optional: false, reloadOnChange: true);
+                    config.AddEnvironmentVariables();
+                })
                 .Build();
     }
 }
