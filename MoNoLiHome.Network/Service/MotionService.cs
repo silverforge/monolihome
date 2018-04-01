@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MoNoLiHome.Network.Client;
 namespace MoNoLiHome.Network.Service
 {
-    public class MotionService
+    public class MotionService : IMotionService
     {
-        public MotionService()
+        readonly IFirebaseConnector _firebaseConnector;
+
+        public MotionService(IFirebaseConnector firebaseConnector)
         {
-            
+            _firebaseConnector = firebaseConnector;
         }
 
-        public void Detected()
+        public async Task<bool> DetectedAsync()
         {
-            
+            return await _firebaseConnector.PingMotionDetectedAsync();
         }
     }
 }

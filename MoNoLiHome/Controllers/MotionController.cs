@@ -8,13 +8,15 @@ namespace MoNoLiHome.Controllers
     [Route("api/[controller]")]
     public class MotionController : Controller
     {
-        readonly IArrivedHomeService _arrivedHomeService;
         readonly ILogger<MotionController> _logger;
+        readonly IArrivedHomeService _arrivedHomeService;
+        readonly IMotionService _motionService;
 
-        public MotionController(IArrivedHomeService arrivedHomeService, ILogger<MotionController> logger)
+        public MotionController(IArrivedHomeService arrivedHomeService, IMotionService motionService, ILogger<MotionController> logger)
         {
             _logger = logger;
             _arrivedHomeService = arrivedHomeService;
+            _motionService = motionService;
         }
 
         [HttpGet]
@@ -26,22 +28,19 @@ namespace MoNoLiHome.Controllers
             });
         }
 
-
         [HttpGet]
         [Route("detected")]
         public async Task<JsonResult> GetMotionDetected()
         {
+            bool result = false;
             var amIHome = await _arrivedHomeService.AmIHomeAsync();
             if (!amIHome)
-            {
-                
-            }
-
+                result = await _motionService.DetectedAsync();
 
             return Json(new 
             {
-                Response = true,
-                MessageSent = false
+                Response = result,
+                MessageSent = true
             });
         }
     }
