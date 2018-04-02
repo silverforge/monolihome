@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MoNoLiHome.Model.Request;
 using MoNoLiHome.Network.Service;
 
 namespace MoNoLiHome.Controllers
@@ -28,9 +29,9 @@ namespace MoNoLiHome.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("detected")]
-        public async Task<JsonResult> GetMotionDetected()
+        public async Task<JsonResult> PostMotionDetected([FromBody] MotionDetectedMessage message)
         {
             bool result = false;
             var amIHome = await _arrivedHomeService.AmIHomeAsync();
