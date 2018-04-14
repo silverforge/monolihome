@@ -13,10 +13,10 @@ namespace MoNoLiHomeTest.Controllers
     [TestClass]
     public class MotionControllerTest
     {
-        IArrivedHomeService _homeService = Substitute.For<IArrivedHomeService>();
-        IMotionService _motionService = Substitute.For<IMotionService>();
-        ILogger<MotionController> _logger = Substitute.For<ILogger<MotionController>>();
-        MotionController _motionController;
+        readonly IArrivedHomeService _homeService = Substitute.For<IArrivedHomeService>();
+        readonly IMotionService _motionService = Substitute.For<IMotionService>();
+        readonly ILogger<MotionController> _logger = Substitute.For<ILogger<MotionController>>();
+        readonly MotionController _motionController;
 
         public MotionControllerTest()
         {
