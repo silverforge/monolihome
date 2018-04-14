@@ -8,8 +8,7 @@ namespace MoNoLiHomeTest.Controllers
     [TestClass]
     public class RootControllerTest
     {
-
-        RootController _rootController = new RootController();
+        readonly RootController _rootController = new RootController();
 
         #region Happy Path
 

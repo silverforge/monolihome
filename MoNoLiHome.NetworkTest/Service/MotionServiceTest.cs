@@ -10,8 +10,8 @@ namespace MoNoLiHome.NetworkTest.Service
     [TestClass]
     public class MotionServiceTest
     {
-        IFirebaseConnector _firebaseConnector = Substitute.For<IFirebaseConnector>();
-        IMotionService _motionService;
+        readonly IFirebaseConnector _firebaseConnector = Substitute.For<IFirebaseConnector>();
+        readonly IMotionService _motionService;
 
         public MotionServiceTest()
         {

@@ -13,10 +13,9 @@ namespace MoNoLiHomeTest.Controllers
     [TestClass]
     public class IAmHomeControllerTest
     {
-
-        IArrivedHomeService _arrivedHomeService = Substitute.For<IArrivedHomeService>();
-        ILogger<IAmHomeController> _logger = Substitute.For<ILogger<IAmHomeController>>();
-        IAmHomeController _controller; 
+        readonly IArrivedHomeService _arrivedHomeService = Substitute.For<IArrivedHomeService>();
+        readonly ILogger<IAmHomeController> _logger = Substitute.For<ILogger<IAmHomeController>>();
+        readonly IAmHomeController _controller;
 
         public IAmHomeControllerTest()
         {
