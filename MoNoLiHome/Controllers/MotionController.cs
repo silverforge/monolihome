@@ -41,7 +41,7 @@ namespace MoNoLiHome.Controllers
             return Json(new 
             {
                 Response = result,
-                MessageSent = true
+                MessageSent = !amIHome
             });
         }
     }
