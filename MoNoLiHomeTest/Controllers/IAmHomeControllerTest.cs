@@ -6,6 +6,7 @@ using NSubstitute;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoNoLiHome.Model;
+using MoNoLiHomeTest.Util;
 
 namespace MoNoLiHomeTest.Controllers
 {
@@ -31,7 +32,7 @@ namespace MoNoLiHomeTest.Controllers
 
             var response = await _controller.Get();
             var value = response.Value;
-            var answer = (bool)value.GetType().GetProperty("Answer").GetValue(value);
+            var answer = value.GetPropertyValue<bool>("Answer");
 
             Assert.IsTrue(answer);
         }
@@ -43,7 +44,7 @@ namespace MoNoLiHomeTest.Controllers
 
             var response = await _controller.Get();
             var value = response.Value;
-            var answer = (bool)value.GetType().GetProperty("Answer").GetValue(value);
+            var answer = value.GetPropertyValue<bool>("Answer");
 
             Assert.IsFalse(answer);
         }
@@ -57,9 +58,9 @@ namespace MoNoLiHomeTest.Controllers
 
             var response = await _controller.Post(new IAmHomeMessage() { Toggle = toggle });
             var value = response.Value;
-            var answer = (bool)value.GetType().GetProperty("Set").GetValue(value);
+            var set = value.GetPropertyValue<bool>("Set");
 
-            Assert.IsTrue(answer);
+            Assert.IsTrue(set);
         }
 
         [TestMethod]
@@ -71,9 +72,9 @@ namespace MoNoLiHomeTest.Controllers
 
             var response = await _controller.Post(new IAmHomeMessage() { Toggle = toggle });
             var value = response.Value;
-            var answer = (bool)value.GetType().GetProperty("Set").GetValue(value);
+            var set = value.GetPropertyValue<bool>("Set");
 
-            Assert.IsFalse(answer);
+            Assert.IsFalse(set);
         }
 
         #endregion
