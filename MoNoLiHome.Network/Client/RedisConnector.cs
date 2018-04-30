@@ -22,5 +22,14 @@ namespace MoNoLiHome.Network.Client
         {
             return await _redisStore.StringSetAsync(key, value, expire);
         }
+
+        public async Task<long> GetExpireAsync(string key)
+        {
+            var result = await _redisStore.StringGetWithExpiryAsync(key);
+            if (result.Expiry == null)
+                return 0;
+
+            return Convert.ToInt64(result.Expiry.Value.Ticks);
+        }
     }
 }

@@ -36,5 +36,11 @@ namespace MoNoLiHome.Network.Service
             _logger.LogDebug($" ::: ArrivedHomeService.IAmHomeAsync result from redisConnector ::: {result} ::: with set ::: {toggle}");
             return toggle;
         }
+
+        public async Task<long> GetCurrentCountDownTimeAsync()
+        {
+            var milliseconds = await _redisConnector.GetExpireAsync(IAMHOMEKEY);
+            return milliseconds;
+        }
     }
 }

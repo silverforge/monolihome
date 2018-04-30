@@ -7,5 +7,6 @@ namespace MoNoLiHome.Network.Service
     {
         Task<bool> AmIHomeAsync();
         Task<bool> IAmHomeAsync(bool toggle);
+        Task<long> GetCurrentCountDownTimeAsync();
     }
 }

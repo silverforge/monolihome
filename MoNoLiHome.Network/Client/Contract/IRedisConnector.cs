@@ -7,5 +7,6 @@ namespace MoNoLiHome.Network.Client
     {
         Task<string> GetAsync(string key);
         Task<bool> SetAsync(string key, string value, TimeSpan expire);
+        Task<long> GetExpireAsync(string key);
     }
 }

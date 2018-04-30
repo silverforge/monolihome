@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoNoLiHome.Model;
 using MoNoLiHome.Network.Service;
+using System;
 
 namespace MoNoLiHome.Controllers
 {
@@ -40,6 +41,19 @@ namespace MoNoLiHome.Controllers
             return Json(new 
             {
                 Set = result
+            });
+        }
+
+        [HttpGet]
+        [Route("countdowntime")]
+        public async Task<JsonResult> GetCountDownTime()
+        {
+            var result = await _arrivedHomeService.GetCurrentCountDownTimeAsync();
+
+            return Json(new
+            {
+                Time = result,
+                TimeSpan = TimeSpan.FromTicks(result)
             });
         }
     }
